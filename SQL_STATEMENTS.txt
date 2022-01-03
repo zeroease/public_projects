@@ -1,0 +1,25 @@
+*/
+CREATE TABLE users
+id INTEGER PRIMARY KEY,
+firstName VARCHAR(30) NOT NULL,
+lastName VARCHAR(30) NOT NULL;
+
+CREATE TABLE sessions
+id INTEGER PRIMARY KEY,
+userId INTEGER NOT NULL FOREIGN KEY REFERENCES users(id),
+duration DECIMAL NOT NULL;
+
+CREATE TABLE transactions
+id INTEGER PRIMARY KEY,
+userId INTEGER NOT NULL FOREIGN KEY REFERENCES users(id)
+productId INTEGER,
+originDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+description VARCHAR(30),
+qty DECIMAL;
+/*
+
+
+
+
+SELECT userId, avg(duration) FROM sessions GROUP BY userId HAVING COUNT(userId) > 1;
+SELECT concat(firstName,' ',lastName) AS fullName from users;
